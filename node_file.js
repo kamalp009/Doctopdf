@@ -1,9 +1,11 @@
-const word2pdf = require('word2pdf');
-const fs = require('fs');
+var toPdf = require("office-to-pdf")
+var fs = require("fs")
+var wordBuffer = fs.readFileSync("demo.docx")
 
-console.log("i am in");
-
-const convert = async () => {
-  const data = await word2pdf('demo.docx')
-  fs.writeFileSync('demo.pdf', data);
-}
+toPdf(wordBuffer).then(
+  (pdfBuffer) => {
+    fs.writeFileSync("demo.pdf", pdfBuffer)
+  }, (err) => {
+    console.log(err)
+  }
+)
