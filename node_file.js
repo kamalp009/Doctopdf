@@ -1,8 +1,7 @@
-var docxConverter = require('docx-pdf');
+const word2pdf = require('word2pdf');
+const fs = require('fs');
 
-docxConverter('demo.docx','demo.pdf',function(err,result){
-  if(err){
-    console.log(err);
-  }
-  console.log('result'+result);
-});
+const convert = async () => {
+  const data = await word2pdf('demo.docx')
+  fs.writeFileSync('demo.pdf', data);
+}
